@@ -1,0 +1,60 @@
+script to help collect vmware logs for multiple servers.
+
+Here are the steps:
+ 
+1.      Ssh to my machine: ssh carlos@172.16.124.44 with password dangerous
+ 
+2.      Create a folder with a meaningful name under ~/test_results for example
+mkdir ~/test_results/FOLDERNAME
+ 
+3.      Cd into said folder
+Cd ~/test_results/FOLDERNAME
+ 
+4.      Execute this command to activate the python virtual environment:
+source /home/carlos/python_automation_virtual_env/bin/activate
+ 
+5.      Run the script for as many servers as you’d like to capture for example below for .27 and .28:
+ 
+python ~/racadm_automation/log_stats.py log_all FOLDERNAME --address 172.16.124.27 --username root --password dellemc&
+python ~/racadm_automation/log_stats.py log_all FOLDERNAME --address 172.16.124.28 --username root --password dellemc&
+ 
+ 
+The script will ssh into each server and log all stats to /FOLDERNAME. Wait for an “All stats created” log as shown below:
+ 
+(python_automation_virtual_env) carlos@ubuntu:~/test_results/Results$ python ~/racadm_automation/log_stats.py log_all FOLDERNAME --address 172.16.124.27 --username root --password dellemc&
+[1] 24012
+(python_automation_virtual_env) carlos@ubuntu:~/test_results/Results$ python ~/racadm_automation/log_stats.py log_all FOLDERNAME --address 172.16.124.28 --username root --password dellemc&
+[2] 24014
+(python_automation_virtual_env) carlos@ubuntu:~/test_results/Results$ Sucessful login. Creating stats folder FOLDERNAME
+Sucessful login. Creating stats folder FOLDERNAME
+Logging netstats. wait 2mins
+Logging netstats. wait 2mins
+Sched stats
+Sched stats
+Stats per port. Wait for 15 seconds
+Stats per port. Wait for 15 seconds
+All stats created
+All stats created
+ 
+ 
+6.      Scp files from each server:
+ 
+  scp root@172.16.124.28:/ FOLDERNAME /* .
+  scp root@172.16.124.27:/ FOLDERNAME /* .
+ 
+For example:
+ 
+(python_automation_virtual_env) carlos@ubuntu:~/test_results/Results$ scp root@172.16.124.27:/FOLDERNAME/* .
+resource-server27_netstats.logs                                                                             100%   68KB  67.8KB/s   00:00
+resource-server27_schedstats.logs                                                                           100%   23KB  23.5KB/s   00:00
+resource-server27_vmnic5_netstats.log                                                                       100% 2252     2.2KB/s   00:00
+resource-server27_vmnic6_netstats.log                                                                       100% 2252     2.2KB/s   00:00
+resource-server27_vmnic9_netstats.log                                                                       100% 4632     4.5KB/s   00:00
+(python_automation_virtual_env) carlos@ubuntu:~/test_results/Results$ scp root@172.16.124.28:/FOLDERNAME/* .
+resource-server28_netstats.logs                                                                             100%   68KB  67.8KB/s   00:00
+resource-server28_schedstats.logs                                                                           100%   23KB  23.5KB/s   00:00
+resource-server28_vmnic5_netstats.log                                                                       100% 2252     2.2KB/s   00:00
+resource-server28_vmnic6_netstats.log                                                                       100% 2251     2.2KB/s   00:00
+resource-server28_vmnic9_netstats.log                                                                       100% 4631     4.5KB/s   00:00
+ 
+ 

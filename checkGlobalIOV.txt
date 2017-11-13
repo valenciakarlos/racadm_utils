@@ -1,0 +1,2 @@
+BIOS.IntegratedDevices.SriovGlobalEnable
+BIOS.ProcSettings.ProcVirtualization

@@ -1,0 +1,5 @@
+*NIC.NICConfig*.NumberVFAdvertised
+BIOS.ProcSettings.LogicalProc
+BIOS.IntegratedDevices.SriovGlobalEnable
+*NIC.DeviceLevelConfig*.VirtualizationMode
+BIOS.ProcSettings.ProcVirtualization

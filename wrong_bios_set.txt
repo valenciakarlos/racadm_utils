@@ -1,0 +1,6 @@
+BIOS.ProcSettings.LogicalProc Disabled
+BIOS.ProcSettings.ProcVirtualization Disabled
+BIOS.IntegratedDevices.SriovGlobalEnable Disabled
+BIOS.SysProfileSettings.SysProfile PerfOptimized
+*NIC.NICConfig*.NumberVFAdvertised 16
+*NIC.DeviceLevelConfig*.VirtualizationMode NONE

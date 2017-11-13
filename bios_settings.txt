@@ -1,0 +1,6 @@
+BIOS.ProcSettings.LogicalProc Enabled
+BIOS.ProcSettings.ProcVirtualization Enabled
+BIOS.IntegratedDevices.SriovGlobalEnable Enabled
+BIOS.SysProfileSettings.SysProfile PerfOptimized
+*NIC.NICConfig*.NumberVFAdvertised 32
+*NIC.DeviceLevelConfig*.VirtualizationMode SRIOV
